@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 """
-Module that performs extraction. For usage, refer to documentation for the class
-'Extractor'. This module can also be executed directly,
+Module that performs extraction. For usage, refer to documentation for the class  #用于实施提取的模块。利用率
+'Extractor'. This module can also be executed directly,   #这个模块可以用来立即执行
 e.g. 'extractor.py <input> <output>'.
 """
 
@@ -17,25 +17,25 @@ import traceback
 import magic
 import binwalk
 
-class Extractor(object):
+class Extractor(object):   #一个类
     """
-    Class that extracts kernels and filesystems from firmware images, given an
-    input file or directory and output directory.
+    Class that extracts kernels and filesystems from firmware images, given an  #从固件映象中提取内核和文件系统，给一个
+    input file or directory and output directory.                              #输入文件或目录和输出目录
     """
 
-    # Directories that define the root of a UNIX filesystem, and the
+    # Directories that define the root of a UNIX filesystem, and the  #这是一个定义UNIX文件系统根目录和合适（正确）的阈值条件的目录
     # appropriate threshold condition
     UNIX_DIRS = ["bin", "etc", "dev", "home", "lib", "mnt", "opt", "root",
                  "run", "sbin", "tmp", "usr", "var"]
     UNIX_THRESHOLD = 4
 
-    # Lock to prevent concurrent access to visited set. Unfortunately, must be
-    # static because it cannot be pickled or passed as instance attribute.
-    visited_lock = multiprocessing.Lock()
+    # Lock to prevent concurrent access to visited set. Unfortunately, must be  #锁住来防止并发访问访问集
+    # static because it cannot be pickled or passed as instance attribute.  #静止，因为它不能作为一个实例属性被选取或传递
+    visited_lock = multiprocessing.Lock()  #拜访锁=多进程模块中的Lock函数
 
-    def __init__(self, indir, outdir=None, rootfs=True, kernel=True,
-                 numproc=True, server=None, brand=None):
-        # Input firmware update file or directory
+    def __init__(self, indir, outdir=None, rootfs=True, kernel=True, #输出文件目录的路径 根文件系统 内核
+                 numproc=True, server=None, brand=None):         #进程数量 服务器 品牌
+        # Input firmware update file or directory  #输入固件更新文件或目录
         self._input = os.path.abspath(indir)
         # Output firmware directory
         self.output_dir = os.path.abspath(outdir) if outdir else None
